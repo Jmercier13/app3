@@ -47,5 +47,4 @@ Temporary Items
 .apdisk
 
 # Vagrant folder
-.vagrant
-test/
+.vagrant/
