@@ -42,22 +42,24 @@ const int NBRE_PLATS_MAX = 20;          // Nombre de plats maximum dans un menu
 */
 
 class Menu {
-public:
-/** Methodes et attributs publiques de Menu
-  Le code d'identification est un reperage independant de l'indice
-*/
-   Menu();
-   virtual ~Menu();
-   void afficher (ostream & sortie) const;          ///< Afficher le contenu du menu
-   void ajoute(int code, string desc, double prix); ///< Ajouter un plat au menu
-   void afficher_courant (ostream & sortie) const;  ///< Afficher le Plat courant
-   bool positionne_code(int code);                  ///< Rechercher un code et en faire le plat courant
-   PlatAuMenu *get_courant();                       ///< Obtenir un pointeur vers le plat courant
-   void efface_courant();                           ///< Effacer  le Plat courant
-private:
-   string description;                       ///< Description specifique
-   PlatAuMenu *plat[NBRE_PLATS_MAX];
-   int courant;
+	private:
+		string description;                       ///< Description specifique
+		PlatAuMenu *plat[NBRE_PLATS_MAX];
+		int courant;
+	
+	public:
+		Menu();
+		virtual ~Menu();
+		
+		void afficher (ostream & sortie) const;          ///< Afficher le contenu du menu
+		void afficher_courant (ostream & sortie) const;  ///< Afficher le Plat courant
+		
+		void ajoute(int code, string desc, double prix); ///< Ajouter un plat au menu
+		bool positionne_code(int code);                  ///< Rechercher un code et en faire le plat courant
+		
+		PlatAuMenu *get_courant();                       ///< Obtenir un pointeur vers le plat courant
+		void efface_courant();                           ///< Effacer  le Plat courant
+
 };
 
 /**

@@ -33,12 +33,14 @@
 
 class Test_menu_fact
 {
- public:
-   Test_menu_fact  (Menu *le_menu, Facture *la_facture); ///< Constructeur de la classe
-   ~Test_menu_fact();                                    ///< Destructeur
-   Menu * le_menu;
-   Facture *la_facture;
-   void executer_test_1 (ostream& fichier_sortie);       ///< Executer le test 
+	public:
+		Test_menu_fact  (Menu *le_menu, Facture *la_facture); ///< Constructeur de la classe
+		~Test_menu_fact();                                    ///< Destructeur
+		
+		Menu * le_menu;
+		Facture *la_facture;
+		
+		void executer_test_1 (ostream& fichier_sortie);       ///< Executer le test 
 }; 
 
 #endif //TEST_MENU_FACT_H
