@@ -33,29 +33,28 @@ const bool TRACE_Plats = false;          ///< Activer une trace sur cout (debogu
 */
 
 class PlatAuMenu { 
-public:
-/** Methodes et attributs publiques
-  Determine un plat au menu (general)
-  Permet d'initialiser les attributs et de les exploiter
-*/
-   PlatAuMenu ();                         ///< Constructeur de base
-   PlatAuMenu  (int code,
-                string desc, double prix);         ///< Constructeur avec code, description et prix 
-   virtual ~PlatAuMenu();                          ///< Destructeur
-   virtual void afficher (ostream & sortie) const; ///< Afficher le plat
-   virtual void afficher_sommaire (ostream & sortie) const;  ///< afficher quantite code prix
-   void set_prix (double prix);                 ///< Fixer le prix
-   void set_code (int code);                 ///< Fixer le code
-   void set_desc (string desc);                     ///< Fixer la description
-   double get_prix () const;                        ///< Obtenir le prix
-   int get_code () const ;                   ///< Obtenir le code
-   string get_desc () const;                        ///< Obtenir la description
+	private:
+		int code; 
+		string desc; 
+		double prix;
+	
+	public:
+		PlatAuMenu ();                         ///< Constructeur de base
+		PlatAuMenu  (int code, string desc, double prix);         ///< Constructeur avec code, description et prix 
+		virtual ~PlatAuMenu();                          ///< Destructeur
 
-private:
-   int code; 
-   string desc; 
-   double prix;
+		void set_prix (double prix);                 ///< Fixer le prix
+		void set_code (int code);                 ///< Fixer le code
+		void set_desc (string desc);                     ///< Fixer la description
+		
+		double get_prix () const;                        ///< Obtenir le prix
+		int get_code () const ;                   ///< Obtenir le code
+		string get_desc () const;                        ///< Obtenir la description
+		
+		virtual void afficher (ostream & sortie) const; ///< Afficher le plat
+		virtual void afficher_sommaire (ostream & sortie) const;  ///< afficher quantite code prix
 };
+
 
 /// Determine un  plat sante 
 /** \class PlatSante
