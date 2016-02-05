@@ -26,8 +26,9 @@ Menu::Menu() {
 		cout << "Menu::Constructeur,  aucun parametre" << endl;
 	}
 	description = "Menu MENUFACT01 - MENUFACT02";						///< Pour usage futur
-	for ( i = 0; i < NBRE_PLATS_MAX; i++ )
-	plat[i]  = NULL;
+	for ( i = 0; i < NBRE_PLATS_MAX; i++ ){
+		plat[i]  = NULL;
+	}
 	courant = 0;
 }
 
@@ -37,19 +38,19 @@ Menu::~Menu() {
 		cout << "Menu::Destructeur" << endl;
 		cout << "courant : " << courant << endl;
 	}
-	for ( i = 0; i < NBRE_PLATS_MAX; i++ ) 
-		 if (plat[i] != NULL)
-		 {
-			 if (TRACE_Menu)
-			  cout  << "Menu::Destructeur Plat No " << i <<" sera efface " << endl;
-			 delete plat[i];
-		 }
-		 else
-		 {
-			 if (TRACE_Menu)
-			  cout  << "Menu::Destructeur Plat No " << i <<" non defini " << endl;
-		 }
-
+	
+	for ( i = 0; i < NBRE_PLATS_MAX; i++ ) {
+		if (plat[i] != NULL){
+			if (TRACE_Menu){
+				cout  << "Menu::Destructeur Plat No " << i <<" sera efface " << endl;
+			}
+			delete plat[i];
+		} else {
+			if (TRACE_Menu){
+				cout  << "Menu::Destructeur Plat No " << i <<" non defini " << endl;
+			}
+		}
+	}
 }
 
 /**
@@ -59,25 +60,28 @@ Menu::~Menu() {
 */
 void Menu::afficher(ostream & os) const {
 	int i;
-	if (TRACE_Menu)
+	if (TRACE_Menu){
 		os << "Menu::afficher" << endl;
+	}
 	os << "\nMenu ----------------------------------------------\n";
 	os << description << endl;
-	for ( i = 0; i < NBRE_PLATS_MAX; i++ ) 
-	{
-		 if (plat[i] != NULL)
-		 {
-			  if (i==courant) 
+	for ( i = 0; i < NBRE_PLATS_MAX; i++ ){
+		if (plat[i] != NULL)
+		{
+			if (i==courant){
 				os << "Plat No " << i <<" (*) : ";
-			  else
-				os << "Plat No " << i <<"	  : "; 
-			  plat[i]->afficher(os);
-		 }
-		 else
-		 {
-			 if (TRACE_Menu)
+			} else{
+				os << "Plat No " << i <<"	  : ";
+			}
+			
+			plat[i]->afficher(os);
+		}
+		else
+		{
+			if (TRACE_Menu){
 				os << "Plat No " << i <<" non defini " << endl;
-		 }
+			}
+		}
 	}
 	return;
 }
@@ -87,9 +91,11 @@ void Menu::afficher_courant(ostream & os) const {
 		os << "Menu::afficher_courant" << ",  ";
 		os << "Menu, courant: ";
 	}
-	if (plat[courant]!=NULL)
+	
+	if (plat[courant]!=NULL){
 		plat[courant]->afficher(os);
-	 return;
+	}
+	return;
 }
 
 /**
@@ -151,8 +157,7 @@ bool Menu::positionne_code(int code_a_trouver) {
 	// positionne � la premiere occurence du code
 	i = 0;
 	trouve = false;
-	while ((!trouve) && (i < NBRE_PLATS_MAX))
-	{
+	while ((!trouve) && (i < NBRE_PLATS_MAX)){
 		if (plat[i] != NULL){
 			 trouve = (plat[i]->get_code()== code_a_trouver);
 		}
@@ -167,6 +172,7 @@ bool Menu::positionne_code(int code_a_trouver) {
 	if (!trouve){
 		cout << "Menu::positionne_code  erreur code " << code_a_trouver <<" non existant dans le menu" << endl;
 	}
+	
 	return trouve;
 }
 
@@ -174,6 +180,7 @@ PlatAuMenu * Menu::get_courant() {
 	if (TRACE_Menu){
 		cout << "Menu::get_courant " << endl;
 	}
+	
 	return plat[courant];
 }
 
