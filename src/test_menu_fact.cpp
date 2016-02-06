@@ -16,9 +16,9 @@
   Departement de genie electrique et de genie informatique Universite de Sherbrooke<br>
 */
 
-#include "test_menu_fact.h"
-#include "menu.h"
-#include "facture.h"
+#include "../headers/test_menu_fact.h"
+#include "../headers/menu.h"
+#include "../headers/facture.h"
 
 Test_menu_fact::Test_menu_fact(Menu *le_m, Facture *la_f) {
 	 le_menu = le_m;

@@ -14,7 +14,7 @@
   Departement de genie electrique et de genie informatique Universite de Sherbrooke<br>
 */
 
-#include "menu.h"
+#include "../headers/menu.h"
 
 /**
 	\brief Constructeur Menu

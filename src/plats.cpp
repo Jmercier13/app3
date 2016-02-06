@@ -14,7 +14,7 @@
 	 Copyright 2012<br>
 	 Departement de genie electrique et de genie informatique Universite de Sherbrooke  */
 
-#include "plats.h"
+#include "../headers/plats.h"
 
 void PlatAuMenu::afficher(ostream & sortie) const {
 	if (TRACE_Plats){
