@@ -33,7 +33,7 @@ const bool TRACE_Plats = false;          ///< Activer une trace sur cout (debogu
 */
 
 class PlatAuMenu { 
-	private:
+	protected:
 		int code; 
 		string desc; 
 		double prix;
