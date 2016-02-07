@@ -6,21 +6,42 @@
 */
 #pragma once
 
-template <class T>
 class Liste {
-	private :
-			
+	private:
+		ListeItem *_first;
+		ListeItem *_last;
+		
+		int _len;
 	
-	public :
+	public:
 		Liste();
 		~Liste();
 		
-		void begin();
-		void end();
+		int length();
 		
-		void add();
-		void remove();
+		ListeItem* begin();
+		ListeItem* end();
 		
-		void push();
-		T pop();
+		ListeItem* getItem(int index);
+		
+		void add(void *obj, int index);
+		void remove(void *obj);
+		
+		void pushLast(void *obj);
+		void pushFront(void *obj);
+		void removeLast();
+		void removeFront();
+};
+
+class ListeItem {
+	friend class Liste
+	private:
+		ListeItem *_back;
+		ListeItem *_front;
+		
+		void *_obj;
+	public:
+		ListeItem();
+		~ListeItem();
+		void* getOjb();
 };
