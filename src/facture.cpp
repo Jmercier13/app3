@@ -1,14 +1,13 @@
-#include "../headers/facture.h"
-#include "../headers/plats.h"
+#include "../headers/Facture.h"
 
-facture::facture(){
+Facture::Facture(){
     pos = 0;
     date = currentDateTime();
 }
-facture::~facture(){
+Facture::~Facture(){
 }
 
-string facture::currentDateTime(){
+string Facture::currentDateTime(){
     time_t now = time(0);
     struct tm tstruct;
     char buf[80];
@@ -16,48 +15,76 @@ string facture::currentDateTime(){
     strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
     return buf;
 }
-void facture::addwcode(int code , int qt){
-	plats *p;
-	p.getObj();
-    liste.add()
+void Facture::addwcode(int code , int qt){
+	PlatChoisi *p;
+	
 }
-void facture::showFac(); {
-    
+void Facture::showFac(); {
+    cout << "Facture ------------------------------" << endl;
+	cout << date;
+	for (int i=0;i<liste.length();i++){
+		ostringstream ss;
+		PlatChoisi *p;
+		p = liste.getObj(i);
+		p->getplats()->affichersomaire(&ss);
+		if(pos == i){
+			cout <<"->" p->_nb << " "<< ss << endl;
+		}
+		cout << p->_nb << " "<< ss << endl;
+	}
+	cout << "Facture ouverte";
 }        
-void facture::chosewcode(int code){
+void Facture::chosewcode(int code){
+    for (int i=0;i<liste.length();i++){
+		PlatChoisi *p;
+		p = liste.getObj(i);
+		if (code == p->getnb()->get_code()){
+			pos = i;
+		}
+	}
+}
+void Facture::chosefirst(){
+    pos = 0;
+}
+void Facture::choselast(){
+    pos = liste.length()-1;
+}
+void Facture::chosenext(){
+	if (pos != liste.length()-1){
+		pos++;
+	}
+}
+void Facture::chosebefore(){
+	if(pos != 0){
+		pos--;
+	}
+}
+
+void Facture::eraseCurrent(){
+    liste.remove(pos);
+}
+void Facture::resetFact(){
     
 }
-void facture::chosefirst(){
+void Facture::closeFact(){
     
 }
-void facture::choselast(){
+void Facture::reopenFact(){
     
 }
-void facture::eraseCurrent(){
-    
-}
-void facture::resetFact(){
-    
-}
-void facture::closeFact(){
-    
-}
-void facture::reopenFact(){
-    
-}
-void facture::payFact(){
+void Facture::payFact(){
     
 }
 
-void facture::setpos(int x){
+void Facture::setpos(int x){
     pos = x;
 }
-int facture::getpos(){
+int Facture::getpos(){
     return pos;
 }
-void facture::setdate(string d){
+void Facture::setdate(string d){
     date = d;
 }
-string facture::getdate(){
+string Facture::getdate(){
     return date;
 }
