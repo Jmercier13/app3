@@ -12,6 +12,9 @@ class Liste {
 		ListeItem *_last;
 		
 		int _len;
+		
+		
+		ListeItem* _getItem(int index);
 	
 	public:
 		Liste();
@@ -22,7 +25,7 @@ class Liste {
 		ListeItem* begin();
 		ListeItem* end();
 		
-		ListeItem* getItem(int index);
+		PlatAuMenu* getObj(int index);
 		
 		void add(void *obj, int index);
 		void remove(void *obj);
