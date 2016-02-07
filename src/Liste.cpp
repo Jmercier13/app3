@@ -1,4 +1,4 @@
-#include "../headers/Liste.h"
+#include "../headers/liste.h"
 
 Liste::Liste(){
 	_first = NULL;

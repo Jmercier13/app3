@@ -16,7 +16,7 @@
 #include <iomanip>
 #include <string>
 #include <time.h>
-#include "Liste.h"
+#include "liste.h"
 using namespace std;
 /// Determine une Facture (a developper pour menufact02) ...
 /** \class Facture

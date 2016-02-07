@@ -8,7 +8,7 @@
 #include <iomanip>
 using namespace std;
 
-class plat_sante: public Plats{
+class PlatSante: public Plats{
     
     private:
         int cal;       //Calories
@@ -16,9 +16,9 @@ class plat_sante: public Plats{
         float chol;       //Cholesterol
     
     public:
-        plat_sante();
-        plat_sante(int, float, float);
-        ~plat_sante();
+        PlatSante();
+        PlatSante(int, float, float);
+        ~PlatSante();
       
         void setcal(int);
         void setgras(float);
