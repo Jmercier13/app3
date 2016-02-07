@@ -1,4 +1,4 @@
-#include "plat_sante.h"
+#include "../headers/plat_sante.h"
 
 //Constructeur de base
 plat_sante::plat_sante(){

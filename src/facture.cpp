@@ -1,4 +1,4 @@
-#include "facture.h"
+#include "../headers/facture.h"
 
 facture::facture(){
     pos = 0;
