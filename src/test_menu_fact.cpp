@@ -17,8 +17,6 @@
 */
 
 #include "../headers/test_menu_fact.h"
-#include "../headers/menu.h"
-#include "../headers/facture.h"
 
 Test_menu_fact::Test_menu_fact(Menu *le_m, Facture *la_f) {
 	 le_menu = le_m;

@@ -6,6 +6,8 @@
 */
 #pragma once
 
+#include "plats.h"
+
 class Liste {
 	private:
 		ListeItem *_first;
