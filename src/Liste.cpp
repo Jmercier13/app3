@@ -17,7 +17,7 @@ ListeItem* Liste::end(){
 	return _last;
 }
 
-ListeItem* Liste::getItem(int index){
+ListeItem* Liste::_getItem(int index){
 	if(index < 0 || index >= _len){
 		//TODO TROW ERR
 	}
@@ -29,6 +29,10 @@ ListeItem* Liste::getItem(int index){
 	}
 	
 	return l;
+}
+
+PlatAuMenu* Liste::_getItem(int index){	
+	return (PlatAuMenu *) _getItem(index);
 }
 
 void Liste::add(void *obj, int index){
@@ -45,7 +49,7 @@ void Liste::add(void *obj, int index){
 	} else {
 		//if its not first or last
 		ListeItem *f;
-		f = getItem(index);
+		f = _getItem(index);
 		ListeItem *b;
 		b = f->_back;
 		
@@ -72,7 +76,7 @@ void Liste::remove(int index){
 		removeLast();
 	} else {
 		ListeItem *l;
-		l = getItem(index);
+		l = _getItem(index);
 		
 		ListeItem *b;
 		b = l->_back;
