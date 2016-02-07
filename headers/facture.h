@@ -28,7 +28,7 @@ class Facture
     private:
         int pos;
         string date;
-        Liste liste;
+        Liste liste();
         
     public:
         facture();

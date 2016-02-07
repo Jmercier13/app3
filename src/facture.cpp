@@ -1,4 +1,5 @@
 #include "../headers/facture.h"
+#include "../headers/plats.h"
 
 facture::facture(){
     pos = 0;
@@ -16,7 +17,9 @@ string facture::currentDateTime(){
     return buf;
 }
 void facture::addwcode(int code , int qt){
-    
+	plats *p;
+	p.getObj();
+    liste.add()
 }
 void facture::showFac(); {
     
