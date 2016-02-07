@@ -51,13 +51,14 @@ class Menu {
 		Menu();
 		virtual ~Menu();
 		
+		PlatAuMenu *get_courant();                       ///< Obtenir un pointeur vers le plat courant
+		
 		void afficher (ostream & sortie) const;          ///< Afficher le contenu du menu
 		void afficher_courant (ostream & sortie) const;  ///< Afficher le Plat courant
 		
 		void ajoute(int code, string desc, double prix); ///< Ajouter un plat au menu
 		bool positionne_code(int code);                  ///< Rechercher un code et en faire le plat courant
 		
-		PlatAuMenu *get_courant();                       ///< Obtenir un pointeur vers le plat courant
 		void efface_courant();                           ///< Effacer  le Plat courant
 
 };
