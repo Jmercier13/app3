@@ -22,6 +22,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <string.h>
 using namespace std;
 
 const bool TRACE_Plats = false;          ///< Activer une trace sur cout (deboguage systematique)
@@ -33,7 +34,7 @@ const bool TRACE_Plats = false;          ///< Activer une trace sur cout (debogu
 */
 
 class PlatAuMenu { 
-	private:
+	protected:
 		int code; 
 		string desc; 
 		double prix;
