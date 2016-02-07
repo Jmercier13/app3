@@ -18,6 +18,18 @@
 
 class Facture
 {
+    private:
+        int pos;
+    public:
+        facture();
+        ~facture();
+        
+        void choseplat(int code);
+        
+        
+        void setpos(int);
+        int getpos();
+        
 // A developper ...
 };
 
