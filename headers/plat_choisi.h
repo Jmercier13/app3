@@ -13,6 +13,9 @@ class PlatChoisi {
 		int _nb;
 	
 	public: 
+		PlatChoisi();
+		PlatChoisi(PlatAuMenu plat, int nb);
+		~PlatChoisi();
 		void setnb(int nb);
 		int getnb();
 		void setplats(PlatAuMenu *plats);
