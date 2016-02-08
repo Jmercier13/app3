@@ -10,6 +10,10 @@ Liste::~Liste(){
 	//TODO
 }
 
+int Liste::length(){
+	return _len;
+}
+
 ListeItem* Liste::begin(){
 	return _first;
 }
@@ -19,29 +23,47 @@ ListeItem* Liste::end(){
 }
 
 ListeItem* Liste::_getItem(int index){
-	if(index < 0 || index >= _len){
-		//TODO TROW ERR
+	if(index < 0){
+		index = _len  + index;
 	}
 	
-	ListeItem *l = _first;
+	if(index < 0 || index >= _len){
+		//TODO TROW ERR
+		cout << "ERROR _getItem index out of range" << endl;
+	}
 	
-	for(int i=0; i<=index; i++){
-		l = l->front;
+	ListeItem *l;
+	
+	if(index == 0){
+		l = _first;
+	} else if(index == _len-1) {
+		l = _last;
+	} else {
+		l = _first;
+		for(int i=0; i<index; i++){
+			l = l->_front;
+		}
 	}
 	
 	return l;
 }
 
-PlatAuMenu* Liste::_getItem(int index){	
-	return (PlatAuMenu *) _getItem(index);
+PlatChoisi* Liste::getObj(int index){	
+	return (PlatChoisi *) _getItem(index)->getObj();
 }
 
 void Liste::add(void *obj, int index){
-	if(index < 0 || index > _len){
-		//TODO TROW ERR
+	if(index < 0){
+		index = (_len + 1) + index;
 	}
 	
-	if(index == 0{
+	if(index < 0 || index > _len){
+		//TODO TROW ERR
+		cout << "ERROR _getItem index out of range" << endl;
+		return;
+	}
+	
+	if(index == 0){
 		//if its the first item
 		pushFirst(obj);
 	} else if(index == _len) {
@@ -49,72 +71,80 @@ void Liste::add(void *obj, int index){
 		pushLast(obj);		
 	} else {
 		//if its not first or last
-		ListeItem *f;
-		f = _getItem(index);
-		ListeItem *b;
-		b = f->_back;
+		ListeItem *f = _getItem(index);
+		ListeItem *b = f->_back;
 		
 		ListeItem *newL = new ListeItem(b, f, obj);
-		if(b != NULL){
-			b->_front = newL;
-		}
-		if(l != NULL){
-			f->_back = newL;
-		}
+		b->_front = newL;
+		f->_back = newL;
 		
 		_len++;
 	}
 }
 
+
+void Liste::pushFirst(void *obj){	
+	if(_first == NULL){
+		//if there is no first
+		_first = new ListeItem(NULL, NULL, obj);
+		_last = _first;
+	} else {
+		//if there is a first
+		ListeItem *newL = new ListeItem(NULL, _first, obj);
+		_first->_back = newL;
+		_first = newL;
+		
+		// cout << "fi b f" << _first << " " << _first->_back << " " << _first->_front << endl;
+		// cout << "la b f" << _last << " " << _last->_back << " " << _last->_front << endl;
+	}
+	
+	_len++;
+}
+
+void Liste::pushLast(void *obj){
+	if(_first == NULL){
+		pushFirst(obj);
+	} else {		
+		ListeItem *newL = new ListeItem(_last, NULL, obj);
+		_last->_front = newL;
+		_last = newL;
+		
+		_len++;
+	}
+}
+
+void Liste::empty(){
+	while(_len){
+		remove(0);
+	}
+}
+
 void Liste::remove(int index){
+	if(index < 0){
+		index = _len + index;
+	}
+	
 	if(index < 0 || index >= _len){
 		//TODO TROW ERR
+		cout << "ERROR remove index out of range" << endl;
+		return;
 	}
 	
 	if(index == 0){
 		removeFirst();
-	} else if(index == _len) {
+	} else if(index == _len-1) {
 		removeLast();
 	} else {
-		ListeItem *l;
-		l = _getItem(index);
-		
-		ListeItem *b;
-		b = l->_back;
-		
-		ListeItem *f;
-		f = l->_front;
+		ListeItem *r = _getItem(index);
+		ListeItem *b = r->_back;
+		ListeItem *f = r->_front;
 		
 		b->_front = f;
 		f->_back = b;
 		
-		delete l;
+		delete r;
+		_len--;	
 	}
-}
-
-void Liste::pushLast(void *obj){
-	ListeItem *newL;
-	newL = new ListeItem(_last, NULL, obj);
-	_last->_front = newL;
-	_last = newL;
-	
-	_len++;
-}
-
-void Liste::pushFirst(void *obj){
-	if(_first == NULL){
-		//if there is no first
-		_first = new ListeItem(NULL, NULL, obj);
-		_last = new ListeItem(_first, NULL, obj);
-		_first->_front = _last;
-	} else {
-		//if there is a first
-		ListeItem newL = new ListeItem(NULL, _first, obj);
-		_first->_back = newL;
-		_first = newL;
-	}
-	
-	_len++;
 }
 
 void Liste::removeLast(){
@@ -122,20 +152,18 @@ void Liste::removeLast(){
 		return;
 	} else if(_len == 1) {
 		delete _first;
-		delete _last;
 		
 		_first = NULL;
 		_last = NULL;
 	} else {
-		ListeItem *b;
-		b = _last->_back;
+		ListeItem *b = _last->_back;
 		
 		b->_front = NULL;
 		delete _last;
 		_last = b;
 	}
 	
-	len--;
+	_len--;
 }
 
 void Liste::removeFirst(){
@@ -143,13 +171,11 @@ void Liste::removeFirst(){
 		return;
 	} else if(_len == 1) {
 		delete _first;
-		delete _last;
 		
 		_first = NULL;
-		_last = NULL;	
+		_last = NULL;
 	} else {
-		ListeItem *f;
-		f = _first->_front;
+		ListeItem *f = _first->_front;
 		
 		f->_back = NULL;
 		delete _first;
@@ -159,16 +185,48 @@ void Liste::removeFirst(){
 	_len--;
 }
 
-ListeItem::ListeItem(ListeItem back, ListeItem front, void* obj){
+string Liste::toString(){
+	int TAB_LEN = 3;
+	stringstream ss;
+	
+	stringstream row_1;
+	stringstream row_2;
+	
+	for(int i=0; i<_len; i++){
+		PlatChoisi *p = getObj(i);
+		row_1 << '|' << setw(TAB_LEN) << i;
+		row_2 << '|' << setw(TAB_LEN) << p->getNb();
+	}
+	
+	ss << row_1.str() << '|' << endl;
+	ss << sep('-', ((TAB_LEN + 1) * _len) + 1) << endl;
+	ss << row_2.str() << '|';
+	
+	return ss.str();
+}
+
+
+ListeItem::ListeItem(){
+	_back = NULL;
+	_front = NULL;
+	_obj = NULL;
+}
+
+ListeItem::ListeItem(ListeItem *back, ListeItem *front, void *obj){
 	_back = back;
 	_front = front;
-	_obj = obj;
+	_obj = obj;	
 }
 
 ListeItem::~ListeItem(){
-	delete _obj;
+	//maybe some memory leak
+	
+	_back = NULL;
+	_front = NULL;
+	_obj = NULL;
+	// delete _obj;
 }
 
-void* getObj(){
+void* ListeItem::getObj(){
 	return _obj;
 }
