@@ -38,7 +38,7 @@
 #include <fstream>
 #include <string>
 #include <ctime>
-
+#include "utilities.h"
 using namespace std;
 
 const string menufact_VERSION = "V01.00a";
@@ -47,7 +47,7 @@ const bool TRACE_M = false;
 #include "../headers/facture.h"
 #include "../headers/menu.h"
 #include "../headers/test_menu_fact.h"
-
+#include "../headers/utilities.h"
 enum mode {console, fichier} le_mode = console;
 
 /** \fn int affiche_commandes ()
@@ -124,15 +124,11 @@ int main( int argc, char **argv, char **envp ) {
 
 	//========================================================================
 	// initialisation des donnees
-
-	Test_menu_fact le_test (&le_menu, &la_facture);	 // un objet statique Test_menu_fact,
-
-	if (le_mode == fichier){
-		le_test.executer_test_1 (fichier_sortie);
-	} else {
-		le_test.executer_test_1 (cout);
-	}
+	ostream stream = ((le_mode == fichier) ? fichier_sortie:cout)
+	Test_menu_fact le_test (&le_menu, &la_facture, stream);  // un objet statique Test_menu_fact,
 	
+	le_test.executer_test_1();
+	le_test.executer_test_2();
 	//========================================================================
 	// fin des operations et sortie 
 

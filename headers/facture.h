@@ -41,7 +41,7 @@ class Facture
         string currentDateTime();
 		
         void addWCode(int code, int qt);
-        void showFac();             //tell if close,open or paid
+        void showFac(ostream &steam);             //tell if close,open or paid
         void choseWCode(int code);
         void choseFirst();
         void choseLast();
@@ -49,10 +49,10 @@ class Facture
 		void choseBefore();
         void eraseCurrent();
         void resetFact();
-        void closeFact();
-        void reopenFact();
-        void payFact();
-		void showClosePaidFact();
+        void closeFact(ostream &steam);
+        void reopenFact(ostream &steam);
+        void payFact(ostream &steam);
+		void showClosePaidFact(ostream &steam);
 		double calculTps(double tot);
 		double calculTvq(double tot);
         

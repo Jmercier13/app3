@@ -98,9 +98,9 @@ void Facture::closeFact(ostream &stream){
 		_state = close;
 	}
 }
-void Facture::reopenFact(){
+void Facture::reopenFact(ostream &stream){
 	if(_state==close){
-		showFac();
+		showFac(stream);
 		_state = open;
 	}
 }

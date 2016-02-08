@@ -39,8 +39,27 @@ class Test_menu_fact
 		
 		Menu * le_menu;
 		Facture *la_facture;
+		ostream _stream;
 		
-		void executer_test_1 (ostream& fichier_sortie);       ///< Executer le test 
+		void executer_test_1();       ///< Executer le test 
+		void executer_test_2();
+		
+		
+        void test_showFac();             
+		void test_closeFact();
+        void test_reopenFact();
+        void test_payFact();
+		void test_payFactReopen();
+        void test_choseWCode();
+        void test_choseFirst();
+        void test_choseLast();
+		void test_choseNext();
+		void test_choseBefore();
+		void test_addWCode();
+        void test_eraseCurrent();
+        void test_resetFact();
+		void test_init();
+
 }; 
 
 #endif //TEST_MENU_FACT_H

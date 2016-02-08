@@ -1,9 +1,9 @@
 #include "../headers/utilities.h"
 
-void exec(string title, void (*f)(void)){
-	cout << header(title) << endl;
+void exec(string title, void (*f)(void), ostream &stream){
+	stream << header(title) << endl;
 	(*f)();
-	cout << endl << endl;
+	stream << endl << endl;
 }
 
 
