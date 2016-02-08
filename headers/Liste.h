@@ -19,12 +19,12 @@ using namespace std;
 class ListeItem {
 	friend class Liste;
 	private:
-	public:
+	// public:
 		ListeItem *_back;
 		ListeItem *_front;
 		
 		void *_obj;
-	// public:
+	public:
 		ListeItem();
 		ListeItem(ListeItem *back, ListeItem *front, void *obj);
 		~ListeItem();
@@ -33,7 +33,7 @@ class ListeItem {
 
 class Liste {
 	private:
-	public:
+	// public:
 		ListeItem *_first;
 		ListeItem *_last;
 		
@@ -41,7 +41,7 @@ class Liste {
 		
 		ListeItem* _getItem(int index);
 	
-	// public:
+	public:
 		Liste();
 		~Liste();
 		

@@ -19,6 +19,8 @@ s = src/
 # test_menu_fact.o : $(h)test_menu_fact.h $(h)menu.h $(h)facture.h
 # 	g++ $(s)test_menu_fact.cpp -g -c
 
+#test_liste
+
 all : test clean
 
 test : test_liste.o plat_choisi.o liste.o utilities.o
