@@ -6,19 +6,42 @@
 */
 #pragma once
 
-#include "plats.h"
+#include <cstddef>
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+
+#include "plat_choisi.h"
+#include "utilities.h"
+
+using namespace std;
+
+class ListeItem {
+	friend class Liste;
+	private:
+	public:
+		ListeItem *_back;
+		ListeItem *_front;
+		
+		void *_obj;
+	// public:
+		ListeItem();
+		ListeItem(ListeItem *back, ListeItem *front, void *obj);
+		~ListeItem();
+		void* getObj();
+};
 
 class Liste {
 	private:
+	public:
 		ListeItem *_first;
 		ListeItem *_last;
 		
 		int _len;
 		
-		
 		ListeItem* _getItem(int index);
 	
-	public:
+	// public:
 		Liste();
 		~Liste();
 		
@@ -27,26 +50,17 @@ class Liste {
 		ListeItem* begin();
 		ListeItem* end();
 		
-		PlatAuMenu* getObj(int index);
+		PlatChoisi* getObj(int index);
 		
-		void add(void *obj, int index);
-		void remove(void *obj);
-		
+		void add(void *obj, int index=-1);
 		void pushLast(void *obj);
-		void pushFront(void *obj);
-		void removeLast();
-		void removeFront();
-};
-
-class ListeItem {
-	friend class Liste
-	private:
-		ListeItem *_back;
-		ListeItem *_front;
+		void pushFirst(void *obj);
 		
-		void *_obj;
-	public:
-		ListeItem();
-		~ListeItem();
-		void* getOjb();
+		void empty();
+		
+		void remove(int index=-1);
+		void removeLast();
+		void removeFirst();
+		
+		string toString();
 };
