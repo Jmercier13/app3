@@ -20,26 +20,28 @@ string Facture::currentDateTime(){
 void Facture::addWCode(int code , int qt){
 	if(_state==open){
 		PlatChoisi *p;
-		p->setplats = _menu.envoieMenu(code) //CHANGER SELON FONCTION MENU
-		p->setnb(qt);
-		liste.pushLast(p);
+		if(_menu->envoieMenu(code)!=NULL){
+			p->setplats = _menu->envoieMenu(code) 
+			p->setnb(qt);
+			liste.pushLast(p);
+		}	
 	}
 }
-void Facture::showFac(); {
+void Facture::showFac(ostream stream); {
 	if(_state==open){
-		cout << "Facture ------------------------------" << endl;
-		cout << date;
+		stream << "Facture ------------------------------" << endl;
+		stream << date;
 		for (int i=0;i<liste.length();i++){
 			ostringstream ss;
 			PlatChoisi *p;
 			p = liste.getObj(i);
 			p->getplats()->affichersomaire(&ss);
 			if(pos == i){
-				cout <<"->" p->_nb << " "<< ss << endl;
+				stream <<"->" p->_nb << " "<< ss.str() << endl;
 			}
-			cout << " "<< p->_nb << " "<< ss << endl;
+			stream << " "<< p->_nb << " "<< ss.str() << endl;
 		}
-		cout << "Facture ouverte";
+		stream << "Facture ouverte";
 	}
 }        
 void Facture::choseWCode(int code){
@@ -89,10 +91,10 @@ void Facture::resetFact(){
 		liste.empty();
 	}
 }
-void Facture::closeFact(){
+void Facture::closeFact(ostream &stream){
 	if(_state==open){
-		showClosePaidFact()
-		cout << endl << "Facture fermer";
+		showClosePaidFact(stream)
+		stream << endl << "Facture fermer";
 		_state = close;
 	}
 }
@@ -102,17 +104,17 @@ void Facture::reopenFact(){
 		_state = open;
 	}
 }
-void Facture::payFact(){
+void Facture::payFact(ostream &stream){
     if(_state==close){
-		showClosePaidFact()
-		cout << endl << "Facture Payer";
+		showClosePaidFact(stream)
+		stream << endl << "Facture Payer";
 		_state = paid;
 	}
 }
 
-void Facture::showClosePaidFact(){
-	cout << "Facture ------------------------------" << endl;
-	cout << date;
+void Facture::showClosePaidFact(ostream &stream){
+	stream << "Facture ------------------------------" << endl;
+	stream << date;
 	double st,tps,tvq = 0;
 	for (int i=0;i<liste.length();i++){
 		ostringstream ss;
@@ -121,18 +123,18 @@ void Facture::showClosePaidFact(){
 		st += p->getplats()->get_prix();	//Sous totale
 		p->getplats()->affichersomaire(&ss);
 		if(pos == i){
-			cout <<"->" p->_nb << " "<< ss << endl;
+			stream <<"->" p->_nb << " "<< ss.str() << endl;
 		}
-		cout << " "<< p->_nb << " "<< ss << endl;
+		stream << " "<< p->_nb << " "<< ss.str() << endl;
 	}
 	tps = calculTps(st);
 	tvq = calculTvq(st);
-	cout << endl << "Sous-total";
-	cout << setw(12) << setprecision (2) << fixed << st;
-	cout << endl << setw(8)<< "tps"; 
-	cout << setw(12) << setprecision (2) << fixed << tps;
-	cout << endl << setw(8)<< "tps";   
-	cout << setw(12) << setprecision (2) << fixed << tvq;
+	stream << endl << "Sous-total";
+	stream << setw(12) << setprecision (2) << fixed << st;
+	stream << endl << setw(8)<< "tps"; 
+	stream << setw(12) << setprecision (2) << fixed << tps;
+	stream << endl << setw(8)<< "tps";   
+	stream << setw(12) << setprecision (2) << fixed << tvq;
 }
 
 double Facture::calculTps(double tot){

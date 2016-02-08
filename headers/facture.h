@@ -33,10 +33,10 @@ class Facture
         string date;
         Liste liste;
 		enum _state {open,close,paid};	
-		Menu _menu;	
+		Menu *_menu;	
         
     public:
-        Facture(Menu menu);
+        Facture(Menu *menu);
         ~Facture();
         string currentDateTime();
 		

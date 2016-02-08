@@ -59,6 +59,8 @@ class Menu {
 		void ajoute(int code, string desc, double prix); ///< Ajouter un plat au menu
 		bool positionne_code(int code);                  ///< Rechercher un code et en faire le plat courant
 		
+		PlatAuMenu* envoieMenu(int code);
+		
 		void efface_courant();                           ///< Effacer  le Plat courant
 
 };

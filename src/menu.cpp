@@ -147,6 +147,17 @@ void Menu::efface_courant() {
 	return;
 }
 
+PlatAuMenu* Menu::envoieMenu(int code){
+	int i=0;
+	while(plat[i] && i<NBRE_PLATS_MAX){
+		if(plat[i]->get_code()==code){
+			return plat[i];
+		}
+		i++;
+	}
+	return NULL;
+}
+
 bool Menu::positionne_code(int code_a_trouver) {
 
 	bool trouve = false;
