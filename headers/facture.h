@@ -17,6 +17,8 @@
 #include <string>
 #include <time.h>
 #include "liste.h"
+#include "plats.h"
+#include "plat_choisi.h"
 using namespace std;
 /// Determine une Facture (a developper pour menufact02) ...
 /** \class Facture
@@ -28,17 +30,19 @@ class Facture
     private:
         int pos;
         string date;
-        Liste liste();
+        Liste liste;
         
     public:
-        facture();
-        ~facture();
+        Facture();
+        ~Facture();
         string currentDateTime();
         void addwcode(int code, int qt);
         void showFac();             //tell if close,open or paid
         void chosewcode(int code);
         void chosefirst();
         void choselast();
+		void chosenext();
+		void chosebefore();
         void eraseCurrent();
         void resetFact();
         void closeFact();
