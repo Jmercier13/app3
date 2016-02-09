@@ -135,6 +135,10 @@ void Facture::showClosePaidFact(ostream &stream){
 	stream << setw(12) << setprecision (2) << fixed << tps;
 	stream << endl << setw(8)<< "tps";   
 	stream << setw(12) << setprecision (2) << fixed << tvq;
+	stream << setw(12) << "----------" << endl;
+	stream << "total      =";
+	stream << setw(12) << setprecision (2)<< fixed << tps+tvq+st;
+	
 }
 
 double Facture::calculTps(double tot){
